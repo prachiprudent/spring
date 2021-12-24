@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    <!-- SETTER INJECTION default construcor + setters-->
+    <bean class="com.example.demo.beans.MessageBean" id="firstmsg" scope="prototype">
+     <property name="message" value="Hi This is my Message"></property>
+     <property name="sender" value="prachi"></property>
+     <property name="receiverInfo"  ref="contactinfo"  />
+    </bean>
+
+	<!-- Constructor Injection  paramaterized constr -->
+    <bean class="com.example.demo.beans.MessageBean" id="constrDImsg" >
+     <constructor-arg index="0" value="This is constructor DI"></constructor-arg>
+     <constructor-arg index="1" value="mrunal"></constructor-arg>
+     <constructor-arg index="2" ref="contactinfo"></constructor-arg>
+     </bean>
+
+
+
+    <bean class="com.example.demo.beans.MessageBean" id="autowiringmsg"  autowire="byType" >
+    </bean>
+
+
+    <bean class="com.example.demo.beans.ContactDetails" id="contactinfo" >
+     <property name="email" value="prachi1234@some.com"></property>
+     <property name="phonenumber" value="987654321"></property>
+     <property name="residenceAddr" ref = "address" />
+    </bean>
+
+ 
+<bean class="com.example.demo.beans.Address" id="address" >
+     <property name="area" value="kothrud"></property>
+     <property name="city" value="pune"></property>
+     <property name="state" value="maharashtra"></property>
+     <property name="country" value="india"></property>
+     <property name="pin" value="431110001"></property>
+     
+    </bean>
+
+
+
+
+</beans>
